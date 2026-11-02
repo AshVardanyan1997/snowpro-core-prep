@@ -1,6 +1,7 @@
-# SnowPro Core (COF-C03): 7-Day Plan
+# SnowPro Core (COF-C03): Study Plan
 
-**Exam:** Monday, Oct 19, 2026 · **Study window:** Mon Oct 12 to Sun Oct 18 · **Budget:** about 3 hours a day (4 on the weekend), roughly 23 hours in total
+**Exam:** about Tuesday, Nov 10, 2026 · **Study window:** Mon Nov 2 to Mon Nov 9 · **Budget:** about 3 hours a day (4 on the weekend)
+**Rescheduled on Nov 2:** the exam moved from Oct 19 to about Nov 10. The content of each day is the same as before, starting from Day 1 today, and Day 8 adds a light review day before the exam.
 **Checked against:** the official COF-C03 Exam Study Guide (last updated July 8, 2026)
 
 ## 1. The exam
@@ -14,7 +15,7 @@
 
 The official guide doesn't give the question count, time or passing score. Those figures come from third-party sites, so check them on the registration page when you book.
 
-| # | Domain (official) | Weight | Hours | Days |
+| # | Domain (official) | Weight | Hours | Plan days |
 |---|---|---|---|---|
 | 1 | Snowflake AI Data Cloud Features and Architecture | **31%** | 6.5 | 1, 2 |
 | 4 | Performance Optimization, Querying, and Transformation | **21%** | 5 | 3, 4 |
@@ -28,43 +29,47 @@ The official guide doesn't give the question count, time or passing score. Those
 
 Each day, **read the topic, then do it in a trial account, then answer 20 to 40 practice questions on it, then log every miss** in an error log (the topic, why you got it wrong, and the correct fact). The objective numbers below (such as 1.1) match the guide. Section 3 explains what each objective actually means.
 
-### Day 1 · Mon Oct 12 · Domain 1, part 1 (3 h)
-- Set up a 30-day trial account (choose Enterprise edition) and a Snowflake University login.
+### Day 1 · Mon Nov 2 · Domain 1, part 1 (3 h)
+- Set up a 30-day trial account (choose Enterprise edition) and a Snowflake University login. If you created a trial in October, check whether it has expired.
 - **Diagnostic:** answer 30 mixed questions cold, including the 5 sample questions at the end of the guide.
 - Cover 1.1 architecture and editions, 1.3 object hierarchy and parameters, and 1.5 storage, table types and view types.
+- Materials: [day-1/](day-1/) has notes, a lab script and practice questions.
 - Free courses: *Level Up: Snowflake's Key Concepts*, *Level Up: Container Hierarchy*, *Level Up: Accounts & Assurances*.
 
-### Day 2 · Tue Oct 13 · Domain 1, part 2 (3 h)
+### Day 2 · Tue Nov 3 · Domain 1, part 2 (3 h)
 - Cover 1.2 interfaces, 1.4 virtual warehouses, and 1.6 AI/ML and app development features.
 - Lab: create an XS warehouse and a multi-cluster warehouse, try both scaling policies, and run AI_COMPLETE or AI_SENTIMENT on a table.
 - Free courses: *Badge 1: Data Warehousing Workshop* (start it), and the *Snowflake x GenAI: LLM Functions* quickstart.
 
-### Day 3 · Wed Oct 14 · Domain 4, part 1 (3 h)
+### Day 3 · Wed Nov 4 · Domain 4, part 1 (3 h)
 - Cover 4.1 evaluating performance, 4.2 optimizing it, and 4.3 caching.
 - Lab: run the same query twice and compare the two Query Profiles. Then set USE_CACHED_RESULT = FALSE and run it again. Run a large sort on an XS warehouse to make it spill.
 - Free courses: *Level Up: Query History & Caching*, and the articles "Understand Result Caching" and "Local and Remote Disk Spilling".
 
-### Day 4 · Thu Oct 15 · Domain 4, part 2, and the security model from Domain 2 (3 h)
+### Day 4 · Thu Nov 5 · Domain 4, part 2, and the security model from Domain 2 (3 h)
 - Cover 4.4 transformations (semi-structured data, unstructured data, aggregate functions, window functions) and 2.1 the security model.
 - Lab: load a JSON file into a VARIANT column and LATERAL FLATTEN it. Build a role hierarchy with USERADMIN and SYSADMIN, and test USE SECONDARY ROLES ALL.
 
-### Day 5 · Fri Oct 16 · Rest of Domain 2, then Domain 3 loading (3 h)
+### Day 5 · Fri Nov 6 · Rest of Domain 2, then Domain 3 loading (3 h)
 - Cover 2.2 governance, 2.3 monitoring and cost, and 3.1 loading and unloading.
 - Lab: create a masking policy and a row access policy, a resource monitor, and a named stage. Run COPY INTO with VALIDATION_MODE, then with ON_ERROR, then with PURGE.
 - Free courses: *Level Up: Resource Monitoring*, *Level Up: Data Loading*, and Getting Started modules 4, 5 and 9.
 
-### Day 6 · Sat Oct 17 · Rest of Domain 3, Domain 5, then Mock 1 (4 h)
+### Day 6 · Sat Nov 7 · Rest of Domain 3, Domain 5, then Mock 1 (4 h)
 - Cover 3.2 automated ingestion, 3.3 connectors and integrations, and all of Domain 5 (5.1 to 5.3).
 - Lab: build a stream and a task that consume it, then a dynamic table that does the same job. Clone a schema that contains a stream and check that the cloned stream is empty. Use Time Travel and UNDROP. Get a free Marketplace listing.
 - **Mock 1:** 100 questions in 115 minutes, timed. Score it and log every miss.
 
-### Day 7 · Sun Oct 18 · Gaps, then Mock 2 (4 h)
+### Day 7 · Sun Nov 8 · Gaps, then Mock 2 (4 h)
 - Spend 90 minutes on your three weakest objectives from the error log.
-- **Mock 2:** the official Snowflake practice exam, timed. **Target 80% or higher.** If you score under 75%, spend Sunday evening and Monday morning on the weakest domain only.
-- Read sections 3 and 4 once, then stop by 9 pm.
+- **Mock 2:** the official Snowflake practice exam, timed. **Target 80% or higher.** If you score under 75%, give all of Day 8 to the weakest domain.
 
-### Exam day · Mon Oct 19
-- Spend 20 minutes on the cheat sheet and your error log. Learn nothing new.
+### Day 8 · Mon Nov 9 · Light review (2 h at most)
+- Read the error log, section 4 (the sample-question patterns) and the "Ten facts" lists. Learn nothing new.
+- Confirm your exam booking, your ID and the online-proctoring system check. Then stop early.
+
+### Exam day · about Tue Nov 10
+- Spend 20 minutes on the cheat sheet and your error log.
 - Flag any question that takes longer than 90 seconds and come back to it. For multiple-select questions, pick exactly the number of answers they ask for.
 
 ## 3. Objective checklist: what the guide's bullets actually mean

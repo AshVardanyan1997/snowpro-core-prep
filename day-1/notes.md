@@ -1,4 +1,4 @@
-# Day 1 · Mon Oct 12 · Architecture, Object Hierarchy, Storage
+# Day 1 · Mon Nov 2 · Architecture, Object Hierarchy, Storage
 
 **Covers:** objectives 1.1, 1.3 and 1.5 (Domain 1, 31% of the exam) · **Time:** about 3 hours
 
