@@ -27,7 +27,7 @@ The official guide doesn't give the question count, time or passing score. Those
 
 ## 2. Daily routine
 
-Each day, **read the topic, then do it in a trial account, then answer 20 to 40 practice questions on it, then log every miss** in an error log (the topic, why you got it wrong, and the correct fact). The objective numbers below (such as 1.1) match the guide. Section 3 explains what each objective actually means.
+Each day, **read the topic, then do it in a trial account, then answer 20 to 40 practice questions on it, then log every miss** in an error log (the topic, why you got it wrong, and the correct fact). The objective numbers below (such as 1.1) match the guide. Section 3 explains what each objective actually means. Each day's notes open with a "What this lesson covered" list of the official domain and objective names. Use it for a second pass through the [Snowflake documentation](https://docs.snowflake.com) on those topics.
 
 ### Day 1 · Mon Nov 2 · Domain 1, part 1 (3 h)
 - Set up a 30-day trial account (choose Enterprise edition) and a Snowflake University login. If you created a trial in October, check whether it has expired.

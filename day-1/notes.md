@@ -2,6 +2,29 @@
 
 **Covers:** objectives 1.1, 1.3 and 1.5 (Domain 1, 31% of the exam) · **Time:** about 3 hours
 
+## What this lesson covered
+
+These are the official COF-C03 domain and objective names, so you can look each one up in the [Snowflake documentation](https://docs.snowflake.com) for a second round.
+
+**Domain 1.0: Snowflake AI Data Cloud Features and Architecture**
+- 1.1 Describe and use the Snowflake architecture
+  - Cloud Services layer
+  - Compute layer
+  - Database Storage layer
+  - Snowflake editions
+- 1.3 Differentiate Snowflake object hierarchy and types
+  - Organization and account objects
+  - Database objects
+  - Session and context variables
+  - Parameter hierarchy and precedence
+- 1.5 Explain Snowflake storage concepts
+  - Micro-partitions
+  - Data clustering
+  - Table types: permanent, temporary, transient, Apache Iceberg, external, dynamic
+  - View types: standard, materialized, secure
+
+---
+
 | Block | Time | What to do |
 |---|---|---|
 | Setup | 15 min | Sign up for a trial account (choose **Enterprise**) and a Snowflake University (Community) login |
