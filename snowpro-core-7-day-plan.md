@@ -39,6 +39,7 @@ Each day, **read the topic, then do it in a trial account, then answer 20 to 40 
 ### Day 2 · Tue Nov 3 · Domain 1, part 2 (3 h)
 - Cover 1.2 interfaces, 1.4 virtual warehouses, and 1.6 AI/ML and app development features.
 - Lab: create an XS warehouse and a multi-cluster warehouse, try both scaling policies, and run AI_COMPLETE or AI_SENTIMENT on a table.
+- Materials: [day-2/](day-2/) has notes, a lab script and practice questions (with a review set on the Day 1 misses).
 - Free courses: *Badge 1: Data Warehousing Workshop* (start it), and the *Snowflake x GenAI: LLM Functions* quickstart.
 
 ### Day 3 · Wed Nov 4 · Domain 4, part 1 (3 h)
