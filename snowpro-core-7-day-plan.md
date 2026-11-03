@@ -94,7 +94,7 @@ The guide lists topic names only. Each line below says what you need to be able 
   - **Parameters:** account parameters are overridden by user parameters, which are overridden by session parameters. For objects, account settings are overridden by database, then schema, then table. The most specific setting wins.
   - Know the context functions: CURRENT_ROLE(), CURRENT_WAREHOUSE() and so on.
 - **1.4 Warehouses.**
-  - **Types:** Standard Gen1, Standard Gen2 (newer hardware, faster for DML-heavy work, higher credit rate), and Snowpark-optimized (16x memory per node, for ML training and large UDFs).
+  - **Types:** Standard Gen1, Standard Gen2 (newer hardware, faster for DML-heavy work, and the default for new standard warehouses since the 2026_03 behaviour change), and Snowpark-optimized (16x memory per node, for ML training and large UDFs).
   - **Scale up** (bigger size) for complex queries and spilling. **Scale out** (more clusters) for high concurrency and queuing.
   - **Scaling policies:** Standard starts a new cluster as soon as any query queues. Economy starts one only if it estimates the cluster will stay busy for 6 minutes.
   - **Auto-suspend:** set it low (60 seconds or so) for ad-hoc and loading work. Leave it longer for BI work, so the warehouse cache stays warm.

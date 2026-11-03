@@ -24,27 +24,39 @@ CREATE OR REPLACE WAREHOUSE DAY2_XS
   AUTO_RESUME = TRUE
   INITIALLY_SUSPENDED = TRUE;
 
--- Defaults: create one without options and see what you get
+-- Defaults: create one without options and see what you get.
+-- Since the 2026_03 behaviour change, a new standard warehouse is Gen 2 by default
+-- (where Gen 2 is available), and Gen 2 warehouses get Query Acceleration turned on.
 CREATE OR REPLACE WAREHOUSE DAY2_DEFAULTS INITIALLY_SUSPENDED = TRUE;
 SHOW WAREHOUSES LIKE 'DAY2_%';
--- Check: size, auto_suspend (expect 600 for DAY2_DEFAULTS), auto_resume,
--- min_cluster_count, max_cluster_count, scaling_policy, type, state
+-- Check: size (expect X-Small), auto_suspend (expect 600), auto_resume,
+-- min_cluster_count, max_cluster_count, scaling_policy, type, state,
+-- and the generation / resource_constraint columns (expect Gen 2 in most regions)
 
--- Gen 2 standard warehouse (if your region doesn't support it yet, this errors: note it and move on)
-CREATE OR REPLACE WAREHOUSE DAY2_GEN2
+-- Explicit Gen 1 and Gen 2 standard warehouses. GENERATION is the recommended clause;
+-- RESOURCE_CONSTRAINT = STANDARD_GEN_1 / STANDARD_GEN_2 does the same.
+-- (If your region doesn't support Gen 2, the Gen 2 statement errors: note it and move on.)
+CREATE OR REPLACE WAREHOUSE DAY2_GEN1
   WAREHOUSE_SIZE = XSMALL
-  RESOURCE_CONSTRAINT = STANDARD_GEN_2
+  GENERATION = '1'
   AUTO_SUSPEND = 60
   INITIALLY_SUSPENDED = TRUE;
 
--- Snowpark-optimized warehouse: created suspended only, so it never bills here
+CREATE OR REPLACE WAREHOUSE DAY2_GEN2
+  WAREHOUSE_SIZE = XSMALL
+  GENERATION = '2'
+  AUTO_SUSPEND = 60
+  INITIALLY_SUSPENDED = TRUE;
+
+-- Snowpark-optimized warehouse (default MEMORY_16X = 16x memory per node):
+-- created suspended only, so it never bills here
 CREATE OR REPLACE WAREHOUSE DAY2_SNOWPARK
   WAREHOUSE_SIZE = MEDIUM
   WAREHOUSE_TYPE = 'SNOWPARK-OPTIMIZED'
   AUTO_SUSPEND = 60
   INITIALLY_SUSPENDED = TRUE;
 
-SHOW WAREHOUSES LIKE 'DAY2_%';   -- compare the "type" and "resource_constraint" columns
+SHOW WAREHOUSES LIKE 'DAY2_%';   -- compare type, resource_constraint and enable_query_acceleration
 
 -- ---------------------------------------------------------------------
 -- 2. Multi-cluster warehouses and scaling policies (objectives 1.4.2, 1.4.3.3)
@@ -125,7 +137,9 @@ USE ROLE SYSADMIN;
 
 -- ---------------------------------------------------------------------
 -- 6. Cortex AI SQL functions (objective 1.6.4.1)
---    If you get "model not available in your region", run this as ACCOUNTADMIN:
+--    If you get "model not available in your region", check and then change
+--    cross-region inference as ACCOUNTADMIN:
+--      SHOW PARAMETERS LIKE 'CORTEX_ENABLED_CROSS_REGION' IN ACCOUNT;
 --      ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'ANY_REGION';
 --    Each call costs a tiny number of tokens on these few rows.
 -- ---------------------------------------------------------------------
@@ -154,13 +168,16 @@ WHERE AI_FILTER(PROMPT('Is this review a complaint? {0}', review));
 -- One summary across all rows
 SELECT AI_SUMMARIZE_AGG(review) AS summary FROM REVIEWS;
 
--- A free-form prompt to an LLM
-SELECT AI_COMPLETE('mistral-large2',
+-- A free-form prompt to an LLM. llama3.1-8b is small, cheap and widely available;
+-- SHOW CORTEX BASE MODELS lists the models your account can use.
+SELECT AI_COMPLETE('llama3.1-8b',
        'In one sentence, when should a Snowflake user scale up a warehouse instead of scaling out?') AS answer;
 
--- Who can use Cortex? Look for SNOWFLAKE.CORTEX_USER granted to PUBLIC
+-- Who can use Cortex? Access = the USE AI FUNCTIONS account privilege
+-- plus the CORTEX_USER (or AI_FUNCTIONS_USER) database role. Both of the first two go to PUBLIC by default.
 USE ROLE ACCOUNTADMIN;
-SHOW GRANTS OF DATABASE ROLE SNOWFLAKE.CORTEX_USER;
+SHOW GRANTS OF DATABASE ROLE SNOWFLAKE.CORTEX_USER;   -- expect PUBLIC
+SHOW GRANTS TO ROLE PUBLIC;                             -- look for USE AI FUNCTIONS on the account
 USE ROLE SYSADMIN;
 
 -- Token usage and credits for Cortex functions show up here (with latency):
@@ -177,8 +194,8 @@ USE ROLE SYSADMIN;
 --   snow object list warehouse --like 'DAY2_%'
 --   snow streamlit --help                       -- see the deploy commands
 --
--- Optional too: in Snowsight, open Projects > Notebooks > + Notebook, add a SQL cell
--- and a Python cell, and read the SQL cell's result in Python with cell1.to_pandas().
+-- Optional too: in Snowsight, create a notebook (in Workspaces on newer accounts),
+-- add a SQL cell and a Python cell, and use the SQL cell's result in the Python cell.
 
 -- ---------------------------------------------------------------------
 -- 8. Clean up
@@ -187,6 +204,7 @@ USE ROLE SYSADMIN;
 DROP DATABASE DAY2_DB;
 DROP WAREHOUSE DAY2_XS;
 DROP WAREHOUSE DAY2_DEFAULTS;
+DROP WAREHOUSE DAY2_GEN1;
 DROP WAREHOUSE IF EXISTS DAY2_GEN2;
 DROP WAREHOUSE DAY2_SNOWPARK;
 DROP WAREHOUSE DAY2_BI;

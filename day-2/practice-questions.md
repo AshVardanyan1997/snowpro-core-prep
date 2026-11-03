@@ -59,7 +59,7 @@ A. Standard  B. Enterprise  C. Business Critical  D. VPS
 A. A larger standard warehouse with more clusters  B. A Snowpark-optimized warehouse  C. Query Acceleration  D. The result cache
 
 **B8.** Which statement about Standard Gen 2 warehouses is true?
-A. They have 16x the memory of a standard warehouse  B. They are only for Snowpark code  C. They are especially faster for DML such as MERGE, UPDATE and DELETE  D. They can't be suspended
+A. They have 16x the memory of a standard warehouse  B. They are only for Snowpark code  C. They are especially faster for DML such as MERGE, UPDATE and DELETE  D. They are available in every size up to 6XL
 
 **B9.** You resize a running warehouse from Small to Large. What happens to a query that was already running?
 A. It is cancelled and restarted on the Large size  B. It finishes on the resources it started with  C. It moves to the new nodes as they come online  D. It fails
@@ -91,14 +91,14 @@ A. The app runs on the user's laptop  B. A Streamlit app is a schema-level objec
 **B18.** A company wants a chatbot that answers questions from thousands of internal PDF policy documents. Which Cortex feature should retrieve the relevant passages?
 A. Cortex Analyst  B. Cortex Search  C. AI_SENTIMENT  D. FORECAST
 
-**B19.** A finance team wants to type "What was revenue by region last quarter?" and get an answer from tables. What is required for Cortex Analyst?
-A. A Cortex Search service  B. A semantic model or semantic view  C. A Snowpark-optimized warehouse  D. A materialized view
+**B19.** A finance team wants to type "What was revenue by region last quarter?" and get an answer from tables. What does Cortex Analyst need?
+A. A Cortex Search service  B. A semantic view (or a semantic model YAML file)  C. A Snowpark-optimized warehouse  D. A materialized view
 
 **B20.** How are Cortex AI SQL functions such as AI_COMPLETE billed?
 A. A flat monthly fee  B. By the tokens they process  C. Only by the warehouse running time  D. They are free
 
-**B21.** Which role must a user have, directly or through PUBLIC, to call Cortex AI functions?
-A. The SNOWFLAKE.CORTEX_USER database role  B. ACCOUNTADMIN  C. ORGADMIN  D. SECURITYADMIN
+**B21.** Which database role, granted to PUBLIC by default, gives users access to Cortex AI functions?
+A. SNOWFLAKE.CORTEX_USER  B. ACCOUNTADMIN  C. ORGADMIN  D. SECURITYADMIN
 
 **B22.** Which Snowflake ML capabilities can you use with SQL alone? (Choose two.)
 A. FORECAST  B. ANOMALY_DETECTION  C. Training a PyTorch model  D. The Feature Store's Python API
@@ -129,7 +129,7 @@ A. FORECAST  B. ANOMALY_DETECTION  C. Training a PyTorch model  D. The Feature S
 | B5 | B | Min = max is maximized mode. Standard and Economy are scaling policies, which only matter in auto-scale mode. |
 | B6 | B | Multi-cluster warehouses need Enterprise. |
 | B7 | B | Snowpark-optimized warehouses have 16x the memory per node, for ML training and memory-heavy UDFs. Clusters don't add memory to a single query. |
-| B8 | C | Gen 2 is a faster standard warehouse, with the biggest gains on DML and large scans. A describes Snowpark-optimized. |
+| B8 | C | Gen 2 is a faster standard warehouse, with named gains on DELETE, UPDATE, MERGE and table scans. A describes Snowpark-optimized, and Gen 2 isn't available for 5XL or 6XL. |
 | B9 | B | Running queries finish on their original resources. Queued and new queries use the new size. |
 | B10 | A, C | Loading speed depends on files, not huge warehouses, and one batch doesn't need concurrency. Keep it isolated and suspend quickly. |
 | B11 | B | The local disk cache is lost on suspend. The result cache lives in cloud services and survives suspension. |
@@ -140,9 +140,9 @@ A. FORECAST  B. ANOMALY_DETECTION  C. Training a PyTorch model  D. The Feature S
 | B16 | A, C | DataFrames are lazy and push their work down to a warehouse as SQL. Data stays in Snowflake. |
 | B17 | B | Streamlit apps are schema-level objects hosted in Snowflake, and their queries use a warehouse. |
 | B18 | B | Unstructured text and RAG = Cortex Search. Analyst is for structured data. |
-| B19 | B | Cortex Analyst needs a semantic model (YAML in a stage) or a semantic view to map business terms to tables. |
+| B19 | B | Cortex Analyst needs a semantic view (recommended) or a legacy semantic model YAML file to map business terms to tables. |
 | B20 | B | Cortex AI functions are billed per token as AI Services credits. |
-| B21 | A | Access comes from the SNOWFLAKE.CORTEX_USER database role, which is granted to PUBLIC by default. |
+| B21 | A | SNOWFLAKE.CORTEX_USER is granted to PUBLIC by default. Users also need the USE AI FUNCTIONS account privilege, which PUBLIC also has by default. The other options are system account roles, not database roles. |
 | B22 | A, B | ML Functions such as FORECAST and ANOMALY_DETECTION are called from SQL. PyTorch training and the Feature Store's Python API need Python. |
 
 **Scoring:** 85% or more on Part B (19/22) means you're ready for Day 3. Under 70% (15/22) means you should reread the "Ten facts" in [notes.md](notes.md) and redo the lab's scale-up section before Day 3. If you miss any of Part A again, copy the correct fact into your error log in your own words.
