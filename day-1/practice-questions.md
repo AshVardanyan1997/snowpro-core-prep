@@ -10,113 +10,113 @@ Answers and explanations are at the bottom. Cover them while you work. Add every
 ## Part A · Diagnostic (mixed domains)
 
 **A1.** Which Snowflake layer is responsible for query optimization?
-A. Database Storage  B. Compute  C. Cloud Services  D. The virtual warehouse's local disk
+A. Database Storage  B. Compute  (C). Cloud Services  D. The virtual warehouse's local disk
 
-**A2.** A team's reports queue during the 9 am peak but run quickly once they start. What is the most appropriate change?
-A. Increase the warehouse size  B. Configure a multi-cluster warehouse  C. Add a clustering key  D. Enable Search Optimization
+**A2.** A team's reports queue during the 9 am peak but run quickly once they start. What is the most appropriate change? --should be B
+(A). Increase the warehouse size  B. Configure a multi-cluster warehouse  C. Add a clustering key  D. Enable Search Optimization
 
 **A3.** Which role is designed to create users and roles, following the principle of least privilege?
-A. ACCOUNTADMIN  B. SECURITYADMIN  C. USERADMIN  D. SYSADMIN
+A. ACCOUNTADMIN  B. SECURITYADMIN  (C). USERADMIN  D. SYSADMIN
 
 **A4.** Which COPY INTO option checks files for errors without loading any data?
-A. ON_ERROR = CONTINUE  B. VALIDATION_MODE = RETURN_ERRORS  C. FORCE = TRUE  D. PURGE = TRUE
+A. ON_ERROR = CONTINUE  (B). VALIDATION_MODE = RETURN_ERRORS  C. FORCE = TRUE  D. PURGE = TRUE
 
 **A5.** How long is data in Fail-safe for a permanent table?
-A. 1 day  B. 7 days  C. 14 days  D. 90 days
+A. 1 day  (B). 7 days  C. 14 days  D. 90 days
 
-**A6.** A data consumer has no Snowflake account. How can a provider share data with them? (Choose one.)
-A. A direct share to the consumer's email address  B. A reader account  C. Exporting to an external stage  D. A public listing only
+**A6.** A data consumer has no Snowflake account. How can a provider share data with them? (Choose one.) --should be B
+A. A direct share to the consumer's email address  B. A reader account  (C.) Exporting to an external stage  D. A public listing only
 
 **A7.** Query Profile shows "Bytes spilled to remote storage". What is the most direct fix?
-A. Use a larger warehouse  B. Add more clusters  C. Enable the result cache  D. Create a secure view
+A. Use a larger warehouse  B. Add more clusters  (C.) Enable the result cache  D. Create a secure view --should be A
 
 **A8.** Which object tracks row-level changes (CDC) on a table so they can be processed later?
-A. Task  B. Pipe  C. Stream  D. Sequence
+A. Task  B. Pipe  (C). Stream  D. Sequence
 
-**A9.** What is the minimum edition that supports column-level dynamic data masking?
-A. Standard  B. Enterprise  C. Business Critical  D. VPS
+**A9.** What is the minimum edition that supports column-level dynamic data masking? --should be B
+(A.) Standard  B. Enterprise  C. Business Critical  D. VPS
 
 **A10.** Which cache can return a query result without a running warehouse? (Choose two.)
-A. The result cache  B. The warehouse local disk cache  C. The metadata cache  D. The remote disk cache
+(A). The result cache  B. The warehouse local disk cache  (C). The metadata cache  D. The remote disk cache
 
 **A11.** Which serverless feature loads files continuously as soon as they arrive in a cloud storage bucket?
-A. COPY INTO run by a task  B. Snowpipe with auto-ingest  C. External tables  D. Dynamic tables
+A. COPY INTO run by a task  (B.) Snowpipe with auto-ingest  C. External tables  D. Dynamic tables
 
 **A12.** Which Cortex feature turns a natural-language business question into SQL, using a semantic model?
-A. Cortex Search  B. AI_COMPLETE  C. Cortex Analyst  D. AI_CLASSIFY
+A. Cortex Search  B. AI_COMPLETE  (C). Cortex Analyst  D. AI_CLASSIFY
 
-**A13.** Which statement about zero-copy cloning is true?
-A. A clone copies all micro-partitions straight away  B. A clone shares storage with the source until either one changes  C. Clones can only be made of tables  D. Clones keep the Time Travel history of the source
+**A13.** Which statement about zero-copy cloning is true? --should be B
+(A.) A clone copies all micro-partitions straight away  B. A clone shares storage with the source until either one changes  C. Clones can only be made of tables  D. Clones keep the Time Travel history of the source
 
 **A14.** Which view gives one year of query history, including history for dropped objects?
-A. INFORMATION_SCHEMA.QUERY_HISTORY()  B. SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY  C. SHOW QUERIES  D. Query Profile
+A. INFORMATION_SCHEMA.QUERY_HISTORY()  (B.) SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY  C. SHOW QUERIES  D. Query Profile
 
 **A15.** Which statement about a dynamic table is true?
-A. Its refresh schedule is set with a CRON expression  B. You set a TARGET_LAG and Snowflake schedules the refreshes  C. It needs a stream on every source table  D. It can only do full refreshes
+A. Its refresh schedule is set with a CRON expression ( B. )You set a TARGET_LAG and Snowflake schedules the refreshes  C. It needs a stream on every source table  D. It can only do full refreshes
 
 ---
 
 ## Part B · Day 1 topics (1.1, 1.3, 1.5)
 
 **B1.** Which statements about Snowflake's architecture are true? (Choose two.)
-A. Compute and storage scale independently  B. Every warehouse shares one local cache  C. Data is stored in a columnar, compressed format  D. Users can access the underlying micro-partition files directly
+(A.) Compute and storage scale independently  B. Every warehouse shares one local cache ( C). Data is stored in a columnar, compressed format  D. Users can access the underlying micro-partition files directly
 
 **B2.** On one day, warehouses use 100 credits and cloud services uses 8 credits. How many cloud services credits are billed?
-A. 8  B. 0  C. 10  D. 108
+A. 8 ( B). 0  C. 10  D. 108
 
 **B3.** A company needs its own AWS PrivateLink connectivity and HIPAA compliance. What is the minimum edition?
-A. Standard  B. Enterprise  C. Business Critical  D. VPS
+A. Standard  B. Enterprise  (C.) Business Critical  D. VPS
 
 **B4.** Which features need at least Enterprise edition? (Choose three.)
-A. Multi-cluster warehouses  B. Time Travel of 30 days  C. Secure Data Sharing  D. Materialized views  E. Snowpipe
+(A). Multi-cluster warehouses  (B.) Time Travel of 30 days  C. Secure Data Sharing  (D.) Materialized views  E. Snowpipe
 
 **B5.** Which of these are schema-level objects? (Choose two.)
-A. Warehouse  B. Named stage  C. Resource monitor  D. File format  E. Share
+A. Warehouse  (B.) Named stage  C. Resource monitor  (D.) File format  E. Share
 
 **B6.** `TIMEZONE` is set to UTC for the account, to America/New_York for the user, and to Europe/Paris with ALTER SESSION. Which time zone does a query in that session use?
-A. UTC  B. America/New_York  C. Europe/Paris  D. The warehouse's region
+A. UTC  B. America/New_York ( C.) Europe/Paris  D. The warehouse's region
 
 **B7.** `DATA_RETENTION_TIME_IN_DAYS` is 1 for the account, 7 for database DB and 30 for table DB.S.T, with nothing set on schema S. What is the retention for DB.S.T and for another table DB.S.U?
-A. 30 and 1  B. 30 and 7  C. 7 and 7  D. 1 and 1
+A. 30 and 1  (B.) 30 and 7  C. 7 and 7  D. 1 and 1
 
 **B8.** What size range of **uncompressed** data does a micro-partition hold?
-A. 1 to 16 MB  B. 16 to 50 MB  C. 50 to 500 MB  D. 1 to 5 GB
+A. 1 to 16 MB  B. 16 to 50 MB ( C.) 50 to 500 MB  D. 1 to 5 GB
 
 **B9.** Which statements about micro-partitions are true? (Choose two.)
-A. Users define partition boundaries with PARTITION BY  B. They are immutable  C. Metadata records the range of values for each column  D. Each micro-partition stores a single column
+A. Users define partition boundaries with PARTITION BY  (B). They are immutable  (C.) Metadata records the range of values for each column  D. Each micro-partition stores a single column
 
 **B10.** What does a clustering depth close to 1 mean?
-A. The table is poorly clustered  B. The table is well clustered  C. The table has a single micro-partition  D. Automatic Clustering is turned off
+A. The table is poorly clustered ( B.) The table is well clustered  C. The table has a single micro-partition  D. Automatic Clustering is turned off
 
 **B11.** For which table is a clustering key most appropriate?
-A. A 50 MB lookup table  B. A 20 TB event table that is always filtered on event date, and whose query performance has degraded  C. A table that is fully reloaded every hour  D. A table queried only with SELECT *
+A. A 50 MB lookup table  (B.) A 20 TB event table that is always filtered on event date, and whose query performance has degraded  C. A table that is fully reloaded every hour  D. A table queried only with SELECT *
 
-**B12.** A team loads staging data that it can regenerate, and it wants to keep storage costs as low as possible. Which table type should it use?
-A. Permanent  B. Transient  C. External  D. Hybrid
+**B12.** A team loads staging data that it can regenerate, and it wants to keep storage costs as low as possible. Which table type should it use? --should be B
+A. Permanent  B. Transient ( C). External  D. Hybrid
 
 **B13.** Which statements about temporary tables are true? (Choose two.)
-A. Other sessions can see them  B. They are dropped when the session ends  C. They have no Fail-safe  D. They support 90 days of Time Travel on Enterprise
+A. Other sessions can see them  (B.) They are dropped when the session ends  (C.) They have no Fail-safe  D. They support 90 days of Time Travel on Enterprise
 
 **B14.** A user creates a temporary table called ORDERS in a schema that already has a permanent table called ORDERS. What does `SELECT * FROM ORDERS` return in that session?
-A. An error about an ambiguous name  B. Data from the permanent table  C. Data from the temporary table  D. Data from both tables combined
+A. An error about an ambiguous name  B. Data from the permanent table  (C.) Data from the temporary table  D. Data from both tables combined
 
-**B15.** What can you do with ALTER TABLE on a transient table?
+**B15.** What can you do with ALTER TABLE on a transient table? --should be B
 A. Convert it to a permanent table  B. Set DATA_RETENTION_TIME_IN_DAYS = 0  C. Set DATA_RETENTION_TIME_IN_DAYS = 7  D. Turn on Fail-safe
 
 **B16.** A company wants Spark jobs and Snowflake to read and write the same tables in its own S3 bucket, using an open table format. What should it use?
-A. External tables  B. Apache Iceberg tables with the Snowflake catalog  C. Transient tables  D. Hybrid tables
+A. External tables  (B). Apache Iceberg tables with the Snowflake catalog  C. Transient tables  D. Hybrid tables
 
 **B17.** Which statements about materialized views are true? (Choose two.)
-A. They can join several tables  B. A serverless background service keeps them up to date  C. They need Enterprise edition  D. They use no extra storage
+A. They can join several tables  (B.) A serverless background service keeps them up to date  (C.) They need Enterprise edition  D. They use no extra storage
 
-**B18.** Why would you create a secure view instead of a standard view? (Choose two.)
-A. To hide the view definition from users who don't own it  B. To make queries run faster  C. To be able to share the view with another account  D. To store its results
+**B18.** Why would you create a secure view instead of a standard view? (Choose two.)--should be A and C
+(A). To hide the view definition from users who don't own it  B. To make queries run faster  C. To be able to share the view with another account  D. To store its results
 
-**B19.** Which statements need a running warehouse? (Choose one.)
-A. `SELECT COUNT(*) FROM big_table`  B. `SHOW TABLES`  C. `SELECT AVG(amount) FROM big_table WHERE region = 'EU'`  D. `CREATE TABLE t (id INT)`
+**B19.** Which statements need a running warehouse? (Choose one.) --should be C(indeed)
+A. `SELECT COUNT(*) FROM big_table`  B. `SHOW TABLES`  C. `SELECT AVG(amount) FROM big_table WHERE region = 'EU'`  (D.) `CREATE TABLE t (id INT)`
 
-**B20.** Which of these is the preferred account identifier format?
-A. `xy12345`  B. `xy12345.us-east-1.aws`  C. `myorg-myaccount`  D. `myaccount.snowflakecomputing.com/myorg`
+**B20.** Which of these is the preferred account identifier format?--should be C
+(A.) `xy12345`  B. `xy12345.us-east-1.aws`  C. `myorg-myaccount`  D. `myaccount.snowflakecomputing.com/myorg`
 
 ---
 
