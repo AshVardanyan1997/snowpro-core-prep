@@ -45,6 +45,7 @@ Each day, **read the topic, then do it in a trial account, then answer 20 to 40 
 ### Day 3 · Wed Nov 4 · Domain 4, part 1 (3 h)
 - Cover 4.1 evaluating performance, 4.2 optimizing it, and 4.3 caching.
 - Lab: run the same query twice and compare the two Query Profiles. Then set USE_CACHED_RESULT = FALSE and run it again. Run a large sort on an XS warehouse to make it spill.
+- Materials: [day-3/](day-3/) has notes, a lab script and practice questions (with a review set on the repeat misses).
 - Free courses: *Level Up: Query History & Caching*, and the articles "Understand Result Caching" and "Local and Remote Disk Spilling".
 
 ### Day 4 · Thu Nov 5 · Domain 4, part 2, and the security model from Domain 2 (3 h)

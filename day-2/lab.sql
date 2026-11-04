@@ -26,7 +26,7 @@ CREATE OR REPLACE WAREHOUSE DAY2_XS
 
 -- Defaults: create one without options and see what you get.
 -- Since the 2026_03 behaviour change, a new standard warehouse is Gen 2 by default
--- (where Gen 2 is available), and Gen 2 warehouses get Query Acceleration turned on.
+-- (where Gen 2 is available), and new standard warehouses get Query Acceleration turned on (2026_06).
 CREATE OR REPLACE WAREHOUSE DAY2_DEFAULTS INITIALLY_SUSPENDED = TRUE;
 SHOW WAREHOUSES LIKE 'DAY2_%';
 -- Check: size (expect X-Small), auto_suspend (expect 600), auto_resume,
