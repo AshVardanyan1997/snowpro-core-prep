@@ -51,6 +51,7 @@ Each day, **read the topic, then do it in a trial account, then answer 20 to 40 
 ### Day 4 · Thu Nov 5 · Domain 4, part 2, and the security model from Domain 2 (3 h)
 - Cover 4.4 transformations (semi-structured data, unstructured data, aggregate functions, window functions) and 2.1 the security model.
 - Lab: load a JSON file into a VARIANT column and LATERAL FLATTEN it. Build a role hierarchy with USERADMIN and SYSADMIN, and test USE SECONDARY ROLES ALL.
+- Materials: [day-4/](day-4/) has notes, a lab script and practice questions.
 
 ### Day 5 · Fri Nov 6 · Rest of Domain 2, then Domain 3 loading (3 h)
 - Cover 2.2 governance, 2.3 monitoring and cost, and 3.1 loading and unloading.

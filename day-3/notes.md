@@ -192,7 +192,7 @@ Other facts:
 - Controlled by the `USE_CACHED_RESULT` parameter (default TRUE), settable at account, user or session level. Set it to FALSE when you benchmark.
 - Query Profile shows a single **QUERY RESULT REUSE** node when the cache answered.
 - `RESULT_SCAN(LAST_QUERY_ID())` lets you query the result of an earlier query as a table, which is handy for SHOW, DESCRIBE and CALL output.
-- Reuse depends on the **role's privileges**, not on who ran the query first.
+- Reuse needs the current **role to have privileges** on every table in the query. Persisted results are **tied to the user** who ran the query: `RESULT_SCAN` returns only your own results, even after you switch roles ([access control best practices](https://docs.snowflake.com/en/user-guide/security-access-control-considerations)).
 
 ### Metadata cache (4.3.2)
 
