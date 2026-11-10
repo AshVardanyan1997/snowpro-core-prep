@@ -56,6 +56,7 @@ Each day, **read the topic, then do it in a trial account, then answer 20 to 40 
 ### Day 5 · Fri Nov 6 · Rest of Domain 2, then Domain 3 loading (3 h)
 - Cover 2.2 governance, 2.3 monitoring and cost, and 3.1 loading and unloading.
 - Lab: create a masking policy and a row access policy, a resource monitor, and a named stage. Run COPY INTO with VALIDATION_MODE, then with ON_ERROR, then with PURGE.
+- Materials: [day-5/](day-5/) has notes, a lab script and practice questions.
 - Free courses: *Level Up: Resource Monitoring*, *Level Up: Data Loading*, and Getting Started modules 4, 5 and 9.
 
 ### Day 6 · Sat Nov 7 · Rest of Domain 3, Domain 5, then Mock 1 (4 h)
