@@ -62,6 +62,7 @@ Each day, **read the topic, then do it in a trial account, then answer 20 to 40 
 ### Day 6 · Sat Nov 7 · Rest of Domain 3, Domain 5, then Mock 1 (4 h)
 - Cover 3.2 automated ingestion, 3.3 connectors and integrations, and all of Domain 5 (5.1 to 5.3).
 - Lab: build a stream and a task that consume it, then a dynamic table that does the same job. Clone a schema that contains a stream and check that the cloned stream is empty. Use Time Travel and UNDROP. Get a free Marketplace listing.
+- Materials: [day-6/](day-6/) has notes, a lab script and practice questions.
 - **Mock 1:** 100 questions in 115 minutes, timed. Score it and log every miss.
 
 ### Day 7 · Sun Nov 8 · Gaps, then Mock 2 (4 h)
