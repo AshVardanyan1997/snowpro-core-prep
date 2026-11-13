@@ -124,7 +124,7 @@ WHERE METADATA$ACTION = 'INSERT';
 **Types of stream:**
 - **Standard:** inserts, updates and deletes. On tables, views, dynamic tables, directory tables.
 - **Append-only:** inserts only. Cheaper for tables that only ever grow, like event logs.
-- **Insert-only:** inserts only, for **external tables** and externally managed Iceberg tables.
+- **Insert-only:** inserts only, for **external tables** and externally managed Iceberg tables. # did not really get the difference between append and insert
 
 **The vacation problem.** You go on holiday for three weeks and the hourly job is switched off. When you come back, the stream says it's **stale**. A stream can only read changes that still exist in **Time Travel** (section 8). If the table's retention is 1 day, Snowflake automatically stretches it for the stream, but only **up to 14 days by default** (`MAX_DATA_EXTENSION_TIME_IN_DAYS`). After that, the changes are gone and the stream must be recreated. **Consume your streams regularly.**
 
@@ -200,7 +200,7 @@ Snowflake refreshes it so the data is **never more than about 10 minutes behind*
 |---|---|
 | A SQL pipeline with joins and aggregations, declared as a SELECT | **Dynamic table** |
 | Procedural logic (IF/ELSE, loops, procedures), MERGE, exact scheduling (CRON) | **Streams + tasks** |
-| Faster repeated queries on **one** table, rewritten automatically by the optimizer | **Materialized view** |
+| Faster repeated queries on **one** table, rewritten automatically by the optimizer | **Materialized view** | #don't really remember the optimizer topic
 
 > **What to keep**
 > - Dynamic table = **a SELECT + TARGET_LAG**. Snowflake refreshes it (incremental or full) on **your warehouse**.
@@ -345,12 +345,12 @@ CREATE DATABASE sales_dev CLONE sales;
 
 It finishes in seconds and uses **no extra storage at first**, because the clone **points to the same micro-partitions** as the original. Only when someone changes data in either copy are new micro-partitions written, and only those cost extra. The two copies are fully independent: a change in one never shows in the other.
 
-You can clone **databases, schemas and tables** (and also streams, tasks, stages, file formats, sequences and more). Combine it with Time Travel: `CREATE TABLE orders_friday CLONE orders AT(TIMESTAMP => '2026-11-13 16:00:00'::TIMESTAMP_LTZ)` makes a copy of the table as it was before the bad DELETE.
+You can clone **databases, schemas and tables** (and also streams, tasks, stages, file formats, sequences and more). Combine it with Time Travel: `CREATE TABLE orders_friday CLONE orders AT(TIMESTAMP => '2026-11-13 16:00:00'::TIMESTAMP_LTZ)` makes a copy of the table as it was before the bad DELETE. # then why would people even need to COPY over CLONE?
 
 **What surprises people after cloning a database:**
 - **Tasks** in the clone are **suspended**. You don't want the test copy running production jobs.
 - **Streams** in the clone start with their **unconsumed changes inaccessible**, effectively empty.
-- **Pipes** that load from an **internal** stage aren't cloned. Pipes on **external** stages are.
+- **Pipes** that load from an **internal** stage aren't cloned. Pipes on **external** stages are. # I confuse this a little internal stage is your withing Snowflake external is provider like Azure, AWS?
 - **Internal named stages** aren't cloned unless you add `INCLUDE INTERNAL STAGES`. External stages are cloned. Files in table stages aren't copied.
 - **Privileges:** objects *inside* the cloned database keep their grants, but the **cloned database itself doesn't** get the source database's grants.
 - You **can't clone a shared database** you received (section 12).
@@ -359,7 +359,7 @@ You can clone **databases, schemas and tables** (and also streams, tasks, stages
 > - Clone = **metadata only** until data changes. Instant, no extra storage at first. Works with **AT/BEFORE**.
 > - In a cloned database: **tasks suspended**, **streams' unconsumed changes gone**, internal-stage pipes not cloned.
 
-## 11. Replication recap (5.1.1)
+## 11. Replication recap (5.1.1) # need to read one more time
 
 Day 5 section 8 covered replication and failover in detail. In one line: **replication groups** copy databases (any edition) to read-only secondaries in another region or cloud in the **same organization**, and **failover groups** (Business Critical) let a secondary become the primary. For sharing, replication matters for one reason: **a direct share only works inside one region** (section 12), so reaching other regions means replicating the data or using a listing with auto-fulfillment (section 14).
 
@@ -389,11 +389,11 @@ CREATE DATABASE sevan_sales FROM SHARE sevan_org.sevan_account.bean_sales_share;
 - The shared database is **read-only** for Ararat. It can't insert, update, clone it or use Time Travel on it.
 - Sevan can **revoke** access at any moment.
 
-Sevan shares a **secure view** rather than the raw table, so Ararat sees only bean-level totals, and can't see the view's definition. Tables, dynamic tables, external and Iceberg tables, secure views, secure materialized views and secure UDFs can all be shared. A **database role** can be granted to a share to control which objects inside it the consumer gets.
+Sevan shares a **secure view** rather than the raw table, so Ararat sees only bean-level totals, and can't see the view's definition. Tables, dynamic tables, external and Iceberg tables, secure views, secure materialized views and secure UDFs can all be shared. A **database role** can be granted to a share to control which objects inside it the consumer gets. --database role is the other thinkg I confuse what is the difference with ordinary roles, I know that you can't grant database role to user it should be tied to a role, what is the use case
 
 **The small café without Snowflake.** A café in Gyumri also wants a slice of the data, but it has no Snowflake account. Sevan creates a **reader account** for it: a small Snowflake account **owned and paid for by the provider (Sevan)**, including its **compute**. The café can only query what Sevan shares with it, and can't load its own data.
 
-**Can Ararat pass the data on?** The classic rule, and probably what the exam expects: **a consumer can't reshare shared data.** The 2026 docs add a newer option: if the provider allows resharing, the consumer can reshare **within its own organization**, by creating a secure view over the imported data and sharing that view. Never to a third company.
+**Can Ararat pass the data on?** The classic rule, and probably what the exam expects: **a consumer can't reshare shared data.** The 2026 docs add a newer option: if the provider allows resharing, the consumer can reshare **within its own organization**, by creating a secure view over the imported data and sharing that view. Never to a third company. -- but can it set up an unload task to save the csv in somewhere from share?
 
 **Distance.** Ararat's account is in the same cloud region as Sevan's, so a **direct share** works. A partner in **another region** can't use a direct share. Sevan would need to **replicate** the data to that region first, or publish a **listing with Cross-Cloud Auto-Fulfillment** (section 14).
 
