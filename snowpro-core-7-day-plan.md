@@ -64,6 +64,7 @@ Each day, **read the topic, then do it in a trial account, then answer 20 to 40 
 - Lab: build a stream and a task that consume it, then a dynamic table that does the same job. Clone a schema that contains a stream and check that the cloned stream is empty. Use Time Travel and UNDROP. Get a free Marketplace listing.
 - Materials: [day-6/](day-6/) has notes, a lab script and practice questions.
 - **Mock 1:** 100 questions in 115 minutes, timed. Score it and log every miss.
+- Mock 1 is in [mock-1/](mock-1/): [questions.md](mock-1/questions.md), with the key in a separate [answers.md](mock-1/answers.md).
 
 ### Day 7 · Sun Nov 8 · Gaps, then Mock 2 (4 h)
 - Spend 90 minutes on your three weakest objectives from the error log.
